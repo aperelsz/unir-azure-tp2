@@ -1,0 +1,21 @@
+---
+- name: disable swap
+  command: swapoff  -a
+  when: 'swap_status == "no"'
+
+- name: disable swap
+  command: swapon -a
+  when: 'swap_status == "yes"'
+  #
+  #  
+
+- name: Eliminamos cs-swap de etc/fstab
+  lineinfile:
+    dest: /etc/fstab
+    regexp: '.*/dev/mapper/cs-swap.*'
+    line: ''
+    state: present
+
+#- name: 'DEBUG - paquetes a instalar'
+#  debug:
+#    msg: 'Debemos validar que no este esta linea '/swap/d' /etc/fstab'

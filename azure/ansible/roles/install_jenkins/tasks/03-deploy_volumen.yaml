@@ -1,0 +1,20 @@
+---
+
+- name: 'Copio archivo Deploy volumen.yaml'
+  copy:
+    src: 'volumen.yaml'
+    dest: '{{ path_deploy_kube }}'
+  
+- name: Agregar Ip a NFS
+  replace:
+      path: '{{ path_deploy_kube }}/volumen.yaml'
+      regexp: 'server: #nfs_ip#'
+      replace: 'server: "{{ nfs_ip_public }}"'
+      #replace: 'server: "{{ nfs_ip }}"'
+  
+- name: Despliego Volumens
+  command: 'kubectl apply -f {{ path_deploy_kube }}/volumen.yaml'
+  register: result
+
+- debug:
+    msg: '{{ result }}'

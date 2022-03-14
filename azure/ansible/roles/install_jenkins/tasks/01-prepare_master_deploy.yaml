@@ -1,0 +1,6 @@
+---
+- name: Creo directorios /root/kube_deploy/jenkins
+  file:
+    path: '{{ path_deploy_kube }}'
+    state: directory
+

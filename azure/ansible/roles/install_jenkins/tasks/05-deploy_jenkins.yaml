@@ -1,0 +1,13 @@
+---
+
+- name: 'Copio archivo Deploy App jenkins.yamll'
+  copy:
+    src: 'jenkins.yaml'
+    dest: '{{ path_deploy_kube }}'
+
+- name: Despliego Aplicacion, resultset y Servicios
+  command: 'kubectl apply -f {{ path_deploy_kube }}/jenkins.yaml'
+  register: result
+
+- debug:
+    msg: '{{ result }}'

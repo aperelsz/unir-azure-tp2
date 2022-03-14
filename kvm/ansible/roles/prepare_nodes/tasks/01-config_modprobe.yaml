@@ -1,0 +1,8 @@
+---
+- name: Congig modeprobe
+  #community.general.modprobe:
+  modprobe:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - br_netfilter

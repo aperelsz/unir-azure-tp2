@@ -1,0 +1,7 @@
+---
+- name: Obtengo las imagenes de Kubeadmn
+  command: 'kubeadm init --pod-network-cidr {{ master_range_ip }}'
+  register: result
+
+- debug:
+    msg: '{{ result }}'

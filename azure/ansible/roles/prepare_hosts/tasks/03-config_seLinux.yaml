@@ -1,0 +1,4 @@
+---
+- name: Configuro SELinuc
+  selinux:
+    state: '{{ selinux_status | mandatory }}'

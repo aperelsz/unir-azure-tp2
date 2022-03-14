@@ -1,0 +1,36 @@
+---
+
+# Seteamos la configuracion para la memoria swap
+timezone_name: 'America/Argentina/Buenos_Aires'
+swap_status: 'no'
+workers_ips: ['192.168.122.11/32','192.168.122.22/32','192.168.122.30/32']
+master_range_ip: '192.169.0.0/16'
+nfs_all_ips : true
+nfs_access_user: "1000"
+nfs_access_group: "1000"
+#nfs_ips_access: ['192.168.122.11','192.168.122.22','192.168.122.33','192.168.122.50','192.168.122.70','192.168.122.80','192.168.122.90']
+
+var_hosts:
+  - name: worker01
+    type: worker
+    ip: 192.168.122.11
+    name_short: worker01
+    name_long: worker01.dm.ar
+
+  - name: worker02
+    type: worker
+    ip: 192.168.122.22
+    name_short: worker01
+    name_long: worker01.dm.ar
+  
+  - name: master
+    type: master
+    ip: 192.168.122.50
+    name_short: master
+    name_long: master.dm.ar
+
+  - name: nfs
+    type: nfs
+    ip: 192.168.122.60
+    name_short: nfs
+    name_long: nfs.dm.ar

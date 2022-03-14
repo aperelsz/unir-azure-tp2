@@ -1,0 +1,21 @@
+---
+- name: Seteo zona horaria
+  timezone:
+    name: '{{ timezone_name }}'
+
+- name: instalar chrony
+  dnf:
+    name: chrony
+    state: present
+
+- name: Iniciar Chrony
+  systemd:
+    state: started
+    name: chronyd
+    enabled: yes
+
+- name: Ejecutar Timedatectl
+  command: timedatectl set-ntp true
+
+
+

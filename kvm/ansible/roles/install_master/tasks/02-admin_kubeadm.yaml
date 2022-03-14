@@ -1,0 +1,10 @@
+---
+- name: Listo las imagenes de kubeadm
+  command: kubeadm config images list
+
+- name: Obtengo las imagenes de Kubeadmn
+  command: kubeadm config images pull
+  register: result
+
+- debug:
+    msg: 'Pull imagenes: {{ result }}'

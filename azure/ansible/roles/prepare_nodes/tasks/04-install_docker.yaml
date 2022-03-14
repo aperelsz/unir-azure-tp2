@@ -1,0 +1,33 @@
+---
+- name: 'DEBUG - paquetes a instalar'
+  debug:
+    msg: 'Instalacion de docker'
+
+- name: Downlaod packages
+  get_url:
+    url: '{{ item.repo_url | mandatory}}'
+    dest: '{{ item.repo_dest | mandatory}}'
+  loop: '{{ repos | mandatory }}'
+  
+  
+- name: 'instalo docker ce'
+  dnf:
+    name: 'docker-ce'
+    state: present
+  
+- name: 'Inicializa servicio y setea inicio automatico para servicio docker'
+  systemd:
+    name: 'docker'
+    state: started
+    enabled: yes
+  
+- name: 'Copio archivo para config daemon.json'
+  copy:
+    src: 'daemon.json'
+    dest: '/etc/docker/'
+  
+- name: Reiniciamos el servicio de docker
+  systemd:
+    name: 'docker'
+    state: reloaded
+

@@ -1,0 +1,26 @@
+---
+
+- name: 'Defino variable'
+  set_fact:
+    package_firewall: 'firewalld'
+
+- name: instala firewall
+  dnf:
+    name: '{{ package_firewall }}'
+    state: present
+    update_cache: yes
+  register: result
+
+- name: Deshabilitamos AllowZoneDrifting
+  lineinfile:
+    dest: /etc/firewalld/firewalld.conf
+    regexp: 'AllowZoneDrifting.*'
+    line: 'AllowZoneDrifting=no'
+    state: present
+
+- name: Inicializa servicio y setea inicio automatico
+  systemd:
+    name: '{{ package_firewall }}'
+    daemon_reload: no
+    state: started
+    enabled: yes

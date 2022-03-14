@@ -1,0 +1,10 @@
+ansible/git-password
+.terraform
+*.tfstate
+*.tfstate.backup
+**/*.tfstate
+**/*.bkp
+**/*.swp
+**/*git*.sh
+**/*.hcl
+**/*.pub

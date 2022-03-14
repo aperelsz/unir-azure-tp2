@@ -1,0 +1,7 @@
+---
+- name: Obtengo las imagenes de Kubeadmn
+  command: 'kubectl get nodes'
+  register: result
+
+- debug:
+    msg: 'Lista de nodos: {{ result }}'

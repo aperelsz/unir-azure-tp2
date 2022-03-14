@@ -1,0 +1,21 @@
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ansible
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+[master]
+${ ansible_master_ip }
+
+[nfs]
+${ ansible_nfs_ip }
+
+[workers]
+%{ for index, group in ansible_workers_ip ~}
+${ ansible_workers_ip[index] }
+%{ endfor ~}
+
+
+[kubernete:children]
+nfs
+master
+workers

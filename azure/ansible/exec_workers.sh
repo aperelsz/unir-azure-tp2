@@ -1,0 +1,1 @@
+ansible-playbook -i hosts -l workers prepare_workes.yaml -v

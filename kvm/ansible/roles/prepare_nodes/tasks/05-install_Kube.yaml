@@ -1,0 +1,21 @@
+---
+- name: 'DEBUG - paquetes a instalar'
+  debug:
+    msg: 'Instalacion de Kubernet'
+
+- name: 'Copio archivo para config repo | kubernetes.repo'
+  copy:
+    src: 'kubernetes.repo'
+    dest: '/etc/yum.repos.d/'
+  
+- name: 'instalo los paquete kubelet,kubeadm,kubectl'
+  dnf:
+    name: [kubelet,kubeadm,kubectl]
+    disable_excludes: kubernetes
+    state: present
+
+- name: 'Inicializa servicio y setea inicio automatico para servicio kubelet'
+  systemd:
+    name: 'kubelet'
+    state: started
+    enabled: yes

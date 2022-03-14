@@ -1,0 +1,12 @@
+---
+- name: Comando para unir el nodo al master.
+  debug:
+    msg: 'Uno nodo al master con token en token:  {{ item }}'
+  with_file:
+    - "{{ kube_admin_token_file }}"
+
+- name: Realizo la vinculacion Worker-Master
+  command: "{{ item }}"
+  with_file:
+    - "{{ kube_admin_token_file }}"
+

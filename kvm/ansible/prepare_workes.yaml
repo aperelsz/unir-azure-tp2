@@ -1,0 +1,16 @@
+---
+
+- hosts: workers
+  #strategy: debug
+  vars_files:
+    - 'group_vars/kube.yaml'
+  gather_facts: false
+  become: true
+  
+  roles:
+    - role: prepare_hosts
+    - role: prepare_nodes
+      vars:
+        swap_status: 'no'
+    - role: install_workers
+      

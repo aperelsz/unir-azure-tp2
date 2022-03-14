@@ -1,0 +1,14 @@
+---
+
+- name: "instalar {{ item }}"
+  firewalld:
+    service: '{{ item }}'
+    permanent: yes
+    state: enabled
+  loop: '{{ list_service }}'
+
+
+- name: Reiniciamos el servicio de firewall
+  systemd:
+    name: firewalld
+    state: reloaded

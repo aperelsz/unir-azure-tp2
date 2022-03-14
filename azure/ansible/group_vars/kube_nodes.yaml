@@ -1,0 +1,2 @@
+---
+kube_admin_token_file: "./roles/install_workers/files/kube_token.conf"

@@ -1,0 +1,16 @@
+---
+- name: Inicio proceso
+  debug:
+    msg: 'Actualizo paquetes...'
+
+- name: Acutaliza paquetes
+  dnf:
+    name: '{{ item }}'
+    update_only: true
+  loop: "{{ packages }}"
+  when: packages is defined
+
+#- name: DNF update the system
+#  dnf:
+#    name:  "*"
+#    state: latest

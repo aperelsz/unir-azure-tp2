@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: jenkins-haproxy-configmap
+  namespace: jenkins-namespace
+data:
+  servers-increment: "42"
+  ssl-redirect: "OFF"

@@ -1,0 +1,1 @@
+ansible-playbook -i hosts -l nfs prepare_nfs.yaml -v

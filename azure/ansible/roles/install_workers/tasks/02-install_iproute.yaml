@@ -1,0 +1,5 @@
+---
+- name: Instalo IpRoute
+  dnf:
+    name: 'iproute-tc'
+    state: present

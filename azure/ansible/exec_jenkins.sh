@@ -1,0 +1,1 @@
+ansible-playbook -i hosts -l master install_jenkins.yaml -v

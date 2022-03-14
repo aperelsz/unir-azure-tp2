@@ -1,0 +1,24 @@
+---
+- name: populate /etc/environment
+  lineinfile:
+    dest: "/etc/environment"
+    state: present
+    regexp: "KUBECONFIG="
+    line: " KUBECONFIG=/etc/kubernetes/admin.conf"
+
+- name: 'Configura los puertos para el worker'
+  firewalld:
+    port: "{{ item }}/udp"
+    permanent: yes
+    state: enabled
+    zone: public
+  loop: '{{ az_dns_ports_dns }}'
+
+- name: Reiniciamos el servicio de firewall
+  systemd:
+    name: firewalld
+    state: reloaded
+
+- name: Aplico configuracion custom-resources.yaml
+  command: 'kubectl apply -f {{ az_dns_url_deploy }}'
+  register: result

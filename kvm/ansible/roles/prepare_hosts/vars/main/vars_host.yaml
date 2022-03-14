@@ -1,0 +1,33 @@
+var_hosts:
+  - name: worker0
+    ip: 192.168.122.11
+    name_long: worker01.dm.ar
+  
+  - name: worker2
+    ip: 192.168.122.22
+    name_long: worker02.dm.ar
+
+  - name: worker3
+    ip: 192.168.122.30
+    name_long: worker03.dm.ar
+
+
+  - name: master
+    ip: 192.168.122.50
+    name_long: master.dm.ar
+
+  - name: nfs
+    ip: 192.168.122.60
+    name_long: nfs.dm.ar
+
+  - name: docker
+    ip: 192.168.122.70
+    name_long: docker.dm.ar
+
+  - name: ansible
+    ip: 192.168.122.80
+    name_long: ansible.dm.ar
+
+  - name: centos
+    ip: 192.168.122.90
+    name_long: centos.dm.ar

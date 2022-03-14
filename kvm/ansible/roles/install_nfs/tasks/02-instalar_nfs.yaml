@@ -1,0 +1,43 @@
+---
+
+- name: "instalar {{ item }}"
+  dnf:
+    name: '{{ item }}'
+    state: present
+    update_cache: yes
+  register: result
+  loop: "{{ list_packages }}"
+  when: list_packages is defined
+
+
+
+- name: Inicializa servicio y setea inicio automatico para servicio nfs-server
+  systemd:
+    name: 'nfs-server'
+    state: started
+    enabled: yes
+
+
+- name: Agrego ips acceso a nfs a /etc/exports
+  lineinfile:
+    dest: /etc/exports
+    regexp: '.*{{ item }}.*'
+    #En este caso no_root_squash es para que pueda acceder root a escribir
+    line: '/srv/nfs	{{ item }}(rw,sync,insecure,no_root_squash)'
+    state: present
+  loop: '{{ nfs_ips_access }}'
+  when: "not {{ nfs_all_ips }}"
+
+
+- name: Agrego ips acceso a nfs a /etc/exports
+  lineinfile:
+    dest: /etc/exports
+    regexp: '.*\*(.*).*'
+    #En este caso no_root_squash es para que pueda acceder root a escribir
+    line: '/srv/nfs	*(rw,sync,insecure,no_root_squash,anonuid={{ nfs_access_user }},anongid={{ nfs_access_group }})'
+    state: present
+  when: "{{ nfs_all_ips }}"
+
+
+- name: Forzamo lectura de fichero
+  command: 'exportfs -r'

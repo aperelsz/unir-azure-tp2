@@ -1,0 +1,3 @@
+# Este archivo es creado por terraform. Si se realiza un destroy lo elimina.
+# Por eso se deja este archivo para que se quite el .ok para que se pueda desplegar solo Ansible
+nfs_ip_public: '10.0.1.30'

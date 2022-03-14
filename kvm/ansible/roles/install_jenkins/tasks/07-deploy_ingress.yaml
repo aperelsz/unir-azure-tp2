@@ -1,0 +1,22 @@
+---
+
+- name: 'Copio archivo Deploy ingress ingress.yaml'
+  copy:
+    src: 'ingress.yaml'
+    dest: '/root/kube_deploy/jenkins_ok/'
+
+- name: Despliego ingress
+  command: 'kubectl apply -f /root/kube_deploy/jenkins_ok/ingress.yaml'
+  register: result
+
+- name: 'Copio archivo Deploy configMap.yaml'
+  copy:
+    src: 'config_map.yaml'
+    dest: '/root/kube_deploy/jenkins_ok/'
+
+- name: Despliego ingress
+  command: 'kubectl apply -f /root/kube_deploy/jenkins_ok/config_map.yaml'
+  register: result
+
+- debug:
+    msg: '{{ result }}'

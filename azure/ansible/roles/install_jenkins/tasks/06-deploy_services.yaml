@@ -1,0 +1,13 @@
+---
+
+- name: 'Copio archivo Deploy jenkins-services.yaml'
+  copy:
+    src: 'jenkins-services.yaml'
+    dest: '{{ path_deploy_kube }}'
+  
+- name: Despliego tls
+  command: 'kubectl apply -f {{ path_deploy_kube }}/jenkins-services.yaml'
+  register: result
+  
+- debug:
+    msg: '{{ result }}'

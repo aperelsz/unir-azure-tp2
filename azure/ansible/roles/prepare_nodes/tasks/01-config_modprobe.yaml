@@ -1,0 +1,7 @@
+---
+- name: Congig modeprobe
+  modprobe:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - br_netfilter

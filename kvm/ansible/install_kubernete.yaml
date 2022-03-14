@@ -1,0 +1,17 @@
+---
+
+- hosts: master
+  #strategy: debug
+  vars_files:
+    - 'group_vars/kube.yaml'
+  become: true
+
+  gather_facts: false
+  
+- import_playbook: prepare_nfs.yaml
+
+- import_playbook: prepare_master.yaml
+
+- import_playbook: prepare_workes.yaml
+
+- import_playbook: install_jenkins.yaml

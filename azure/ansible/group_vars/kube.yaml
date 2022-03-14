@@ -1,0 +1,6 @@
+---
+# Seteamos la configuracion para la memoria swap
+timezone_name: 'America/Argentina/Buenos_Aires'
+swap_status: 'no'
+
+#nfs_ip: '13.95.2.46' #Se utiliza para setear que la app acceda al contenedor

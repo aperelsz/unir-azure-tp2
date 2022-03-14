@@ -1,0 +1,7 @@
+---
+- name: Creo Namespace
+  command: 'kubectl create namespace jenkins-namespace'
+  register: result
+
+- debug:
+    msg: '{{ result }}'

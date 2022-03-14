@@ -1,0 +1,14 @@
+---
+
+- name: 'Copio archivo Deploy volumen.yaml'
+  copy:
+    src: 'volumen.yaml'
+    dest: '/root/kube_deploy/jenkins_ok/'
+
+
+- name: Despliego Volumens
+  command: 'kubectl apply -f /root/kube_deploy/jenkins_ok/volumen.yaml'
+  register: result
+
+- debug:
+    msg: '{{ result }}'

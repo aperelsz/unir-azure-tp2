@@ -1,0 +1,6 @@
+---
+nfs_all_ips: true
+nfs_ips_access: []
+
+nfs_access_user: "1000"
+nfs_access_group: "1000"

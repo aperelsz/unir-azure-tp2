@@ -1,0 +1,12 @@
+#var_hosts:
+#  - name: worker
+#    ip: 20.224.90.121
+#    name_long: worker.acme.es
+#  
+#  - name: master
+#    ip: 20.224.91.77
+#    name_long: master.acme.es
+#
+#  - name: nfs
+#    ip: 20.224.88.216
+#    name_long: nfs.acme.es

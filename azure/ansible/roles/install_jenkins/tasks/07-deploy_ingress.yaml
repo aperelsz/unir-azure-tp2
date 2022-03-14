@@ -1,0 +1,13 @@
+---
+
+- name: 'Copio archivo Deploy ingress ingress.yaml'
+  copy:
+    src: 'ingress.yaml'
+    dest: '{{ path_deploy_kube }}'
+  
+- name: Despliego ingress
+  command: 'kubectl apply -f {{ path_deploy_kube }}/ingress.yaml'
+  register: result
+  
+- debug:
+    msg: '{{ result }}'
